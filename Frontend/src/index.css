@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root, .app-container {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* --- THEME VARIABLES --- */
+:root {
+  /* LIGHT THEME GLOBALS */
+  --bg-gradient: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+  --text-main: #1f2937;
+  --text-muted: #4b5563;
+  --glass-bg: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  --input-bg: rgba(255, 255, 255, 0.6);
+  --input-text: #1f2937;
+  --input-border: rgba(0, 0, 0, 0.1);
+  --btn-primary: #3b82f6;
+  --btn-primary-hover: #2563eb;
+}
+
+.app-container.dark {
+  /* DARK THEME GLOBALS */
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  --text-main: #f8fafc;
+  --text-muted: #cbd5e1;
+  --glass-bg: rgba(15, 23, 42, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --input-bg: rgba(0, 0, 0, 0.4);
+  --input-text: #f8fafc;
+  --input-border: rgba(255, 255, 255, 0.1);
+  --btn-primary: #6366f1;
+  --btn-primary-hover: #4f46e5;
+}
+
+/* --- BASE STYLES --- */
+.app-container {
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- HEADER & TOGGLE --- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.theme-toggle {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(8px);
+  color: var(--text-main);
+  padding: 0.6rem 1.2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: var(--glass-shadow);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  background: var(--glass-border);
+}
+
+/* --- GLASSMORPHISM PANEL --- */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: 1rem;
+}
+
+/* --- FORMS --- */
+.note-create-form {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 3rem;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.note-create-form input, .modal-form input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--input-text);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.note-create-form input:focus, .modal-form input:focus {
+  border-color: var(--btn-primary);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+  outline: none;
+}
+
+.note-create-form button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: var(--btn-primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.note-create-form button:hover {
+  background: var(--btn-primary-hover);
+  transform: scale(1.02);
+}
+
+/* --- NOTES GRID --- */
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.note {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.notes .note:nth-child(even) { animation-delay: 0.1s; }
+.notes .note:nth-child(3n) { animation-delay: 0.2s; }
+
+.note:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.2);
+}
+
+.note h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.note p {
+  flex: 1;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* --- NOTE ACTIONS --- */
+.note-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.note-actions button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-update {
+  background-color: var(--btn-primary);
+  color: white;
+}
+.btn-update:hover { background-color: var(--btn-primary-hover); }
+
+.btn-delete {
+  background-color: transparent;
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+}
+.btn-delete:hover {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* --- MODAL --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 450px;
+  color: var(--text-main);
+  animation: scaleUp 0.3s ease;
+}
+
+.modal-content h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.modal-actions button {
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.modal-actions button[type="submit"] {
+  background-color: var(--btn-primary);
+  color: white;
+}
+
+.modal-actions button[type="submit"]:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.modal-actions button[type="button"] {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--glass-border);
+}
+
+.modal-actions button[type="button"]:hover {
+  background-color: var(--glass-border);
+}
+
+/* --- ANIMATIONS --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes scaleUp { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
