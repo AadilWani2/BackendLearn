@@ -51,7 +51,7 @@ function App() {
   }
 
   function handleDeleteNote(noteId){
-    axios.delete(`https://backendlearn-doxd.onrender.com//api/notes/${noteId}`).then(res=>{
+    axios.delete(`https://backendlearn-doxd.onrender.com/api/notes/${noteId}`).then(res=>{
       console.log(res.data)
       fetchNotes()
     })
@@ -64,7 +64,7 @@ function App() {
 
   function submitUpdateNote(e){
     e.preventDefault()
-    axios.patch(`https://backendlearn-doxd.onrender.com//api/notes/${updateNoteData.id}`, {
+    axios.patch(`https://backendlearn-doxd.onrender.com/api/notes/${updateNoteData.id}`, {
       title: updateNoteData.title,
       description: updateNoteData.description
     }).then(res=>{
