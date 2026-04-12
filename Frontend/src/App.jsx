@@ -28,7 +28,7 @@ function App() {
 ])
 
   function fetchNotes(){
-      axios.get("https://backendlearn-doxd.onrender.com/api/notes").then(res=>{
+      axios.get("https://backendlearn-qffi.onrender.com/api/notes").then(res=>{
       setNotes(res.data.notes)
     })
   }
@@ -40,7 +40,7 @@ function App() {
   function handleAddNote(e){
     e.preventDefault()
     const {title,description} = e.target.elements
-    axios.post("https://backendlearn-doxd.onrender.com/api/notes",{
+    axios.post("https://backendlearn-qffi.onrender.com/api/notes",{
       title:title.value,
       description:description.value
     }).then(res=>{
@@ -51,7 +51,7 @@ function App() {
   }
 
   function handleDeleteNote(noteId){
-    axios.delete(`https://backendlearn-doxd.onrender.com/api/notes/${noteId}`).then(res=>{
+    axios.delete(`https://backendlearn-qffi.onrender.com/api/notes/${noteId}`).then(res=>{
       console.log(res.data)
       fetchNotes()
     })
@@ -64,7 +64,7 @@ function App() {
 
   function submitUpdateNote(e){
     e.preventDefault()
-    axios.patch(`https://backendlearn-doxd.onrender.com/api/notes/${updateNoteData.id}`, {
+    axios.patch(`https://backendlearn-qffi.onrender.com/api/notes/${updateNoteData.id}`, {
       title: updateNoteData.title,
       description: updateNoteData.description
     }).then(res=>{
